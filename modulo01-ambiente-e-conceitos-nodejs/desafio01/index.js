@@ -4,14 +4,32 @@ const server = express();
 
 server.use(express.json());
 
-const projects = [
+const projects = [];
 
-];
+server.use((req, res, next) => {
+    console.count(`Numero de requisicoes`);
+
+    return next();
+});
+
+function checkProjectExists(req, res ,next) {
+    const { id } = req.params;
+
+    const project = projects.find(project => project.id == id);
+
+    if(!project){
+        return res.json({error : "Project has not found"})
+    }
+
+    return next();
+}
 
 server.post('/projects', (req, res) => {
-    const { id, title} = req.body;
+    const { id, title } = req.body;
 
-    projects.push([id, title, []]);
+    const project = { id, title, tasks: [] }
+
+    projects.push(project);
 
     return res.json(projects);
 });
@@ -20,35 +38,33 @@ server.get('/projects', (req, res) => {
     return res.json(projects);
 });
 
-server.put('/projects/:id', (req, res) => {
+server.put('/projects/:id', checkProjectExists, (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
 
-    projects.forEach(project => 
-        project[0] == id ? project[1] = title : console.log('ID diferente')
-    );
+    const project = projects.find(project => project.id == id);
+    project.title = title;
 
     return res.json(projects);
 });
 
-server.delete('/projects/:id', (req, res) => {
+server.delete('/projects/:id', checkProjectExists, (req, res) => {
     const { id } = req.params;
 
-    projects.forEach((project, index) => 
-        project[0] == id ? projects.splice(index, 1) : console.log('Index incorreto')
-    );
+    const index = projects.findIndex(project => project.id == id);
+
+    projects.splice(index, 1);
 
     return res.json(projects);
 });
 
-server.post('/projects/:id/tasks', (req, res) => {
+server.post('/projects/:id/tasks', checkProjectExists, (req, res) => {
     const { id } = req.params;
-    const { title, tasks } = req.body;
+    const { title } = req.body;
 
+    const project = projects.find(project => project.id == id);
 
-    projects.forEach((project, index) => {
-        project[0] == id ? project[2].push(tasks) : console.log('ID incorreto')
-    });
+    project.tasks.push(title);
 
     return res.json(projects);
 });
