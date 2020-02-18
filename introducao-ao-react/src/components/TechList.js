@@ -4,13 +4,37 @@ import TechItem from './TechItem';
 class TechList extends Component {
     state = {
         newTech: '',
-        techs : [
-            'Node.js',
-            'ReactJS',
-            'React Native'
-        ]
+        techs : []
     };
     
+    /**
+     * Execute when component show on screen.
+     */
+    componentDidMount() {
+        const techs = localStorage.getItem('techs');
+
+        if(techs) {
+            this.setState({techs: JSON.parse(techs)})
+        }
+    }
+
+    /**
+     * Execute when component have changes on your`s state and/or props.
+     */
+    componentDidUpdate(_, prevState) {
+        if(prevState !== this.state.techs) {
+            localStorage.setItem('techs', JSON.stringify(this.state.techs))
+        }
+    }
+
+    /**
+     * Execute when coponent is deleted.
+     */
+    componentWillUnmount() {
+
+    }
+
+
     handleInputChange = e => {
         this.setState({ newTech: e.target.value });
     }
