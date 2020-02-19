@@ -4,8 +4,6 @@ import logo from '../assets/logo.png';
 import avatar from '../assets/avatar.png';
 
 class Header extends Component {
-    state = {}
-
     render() {
         return (
             <header>

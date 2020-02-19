@@ -54,3 +54,8 @@ nav div i:hover {
     text-shadow: 2px 2px 4px #000;
 }
 
+.postlist {
+    width: 700px;
+    margin: 0 auto 20px;
+}
+
