@@ -1,60 +1,82 @@
 import React, { Component } from 'react';
-
-import Post from 'react';
+import Post from './Post';
 
 class PostList extends Component {
     state = {
         posts: [
             {
                 id: 1,
-                author: {
-                name: "Joaquim",
-                avatar: "https://imgur.com/gallery/lpY9k4r.jpeg",
+                manager: {
+                    name: "Venda do seu João",
+                    avatar: "https://pngimage.net/wp-content/uploads/2018/06/png-entreprise-1.png",
                 },
-                date: "2020/02/14",
-                content: [
+                date: "19 de Fevereiro de 2020",
+                content: "Preciso de atualizar a guia de imposto.",
+                comments: [
                     {
                         id: 1,
-                        author: {
-                            name: "Neia",
-                            avatar: "https://imgur.com/gallery/YbFLyyU.jpeg",
-                        }
+                        accountant: {
+                            name: "Contador",
+                            avatar: "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0015/3779/brand.gif",
+                        },
+                        date: '19 de Fevereiro de 2020',
+                        content: "Sera gerada."
+                    }, {
+                        id: 2,
+                        accountant: {
+                            name: "Contador",
+                            avatar: "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0015/3779/brand.gif",
+                        },
+                        date: '19 de Fevereiro de 2020',
+                        content: "Disponível no e-mail;."
                     }
                 ]
-            }, {
+             }, 
+            {
                 id: 2,
-                author: {
-                name: "Joaquim",
-                avatar: "https://imgur.com/gallery/lpY9k4r.jpeg",
+                manager: {
+                    name: "Transportadora Transportes",
+                    avatar: "https://pngimage.net/wp-content/uploads/2018/06/png-entreprise-1.png",
                 },
-                date: "2020/02/14",
-                content: [
+                date: "14 de Fevereiro de 2020",
+                content: "Preciso de atualizar a guia de imposto.",
+                comments: [
                     {
                         id: 1,
-                        author: {
-                            name: "Neia",
-                            avatar: "https://imgur.com/gallery/YbFLyyU.jpeg",
-                        }
+                        accountant: {
+                            name: "Contador",
+                            avatar: "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0015/3779/brand.gif",
+                        },
+                        date: '19 de Fevereiro de 2020',
+                        content: "Sera gerada."
+                    }, {
+                        id: 2,
+                        accountant: {
+                            name: "Contador",
+                            avatar: "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0015/3779/brand.gif",
+                        },
+                        date: '19 de Fevereiro de 2020',
+                        content: "Disponível no e-mail;."
                     }
                 ]
             }
             
         ]
-    }
+    };
 
     render() {
+
         return(
-            <>
-                <div className="postlist">
-                    <div className="post">
-                        {this.state.posts.map(post =>
-                            <Post key={post.id} post={post} />
-                        )}
-                    </div>
-                </div>
-            </>
+            <div className="postlist">
+                {this.state.posts.map( post =>(
+                    <Post 
+                        key={post.id} 
+                        post={post}
+                    />
+                ))}
+            </div>
         )
     }
 }
 
-export default PostList
+export default PostList;

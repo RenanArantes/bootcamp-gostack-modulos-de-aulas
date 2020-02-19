@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-color: #4a90e2;
+    background-color: #e92626;
     display: flex;
     justify-content: center;
 }
@@ -33,7 +33,8 @@ header nav {
 }
 
 nav img {
-    height: 200;
+    height: 75px;
+    width: 75;
 }
 
 nav > div {
@@ -41,12 +42,17 @@ nav > div {
     align-items: center;
 }
 
+.sub-name {
+    font-size: 16px;
+    color: rgb(255, 255, 0)
+}
+
 nav > div i {
     margin-left: 8px;
 }
 
 nav div i {
-    font-size: 45px;
+    font-size: 35px;
 }
 
 nav div i:hover {
@@ -59,3 +65,85 @@ nav div i:hover {
     margin: 0 auto 20px;
 }
 
+.post {
+    margin-top: 20px;
+    border-radius: 8px;
+    background: #fff;
+    padding: 20px;
+    color: #3e3e3e;
+    line-height: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-header .details {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    color: #9a9a9a;
+    line-height: 14px;
+}
+
+.post-header .details span:first-child {
+    font-size: 14px;
+    color: #4a4a4a;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.avatar {
+    min-width: 32px;
+    min-height: 32px;
+    height: 75px;
+    width: 90px;
+    border-radius: 50%;
+}
+
+.comment .avatar {
+    min-width: 32px;
+    min-height: 32px;
+    height: 55px;
+    width: 69px;
+    border-radius: 50%;
+}
+
+.post-content {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: #eeeeee;
+}
+
+.post-comments {
+    background: #fff5f5;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.comment {
+    margin-top: 20px;
+    display: flex;
+}
+
+.comment p {
+    border-radius: 20px;
+    background: #eeeeee;
+    margin-left: 10px;
+    padding: 15px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.comment span {
+    font-weight: bold;
+    margin-right: 6px;
+}

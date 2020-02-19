@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 
-import logo from '../assets/logo.png';
+import logo from '../assets/tecno_logo.png';
 import avatar from '../assets/avatar.png';
 
 class Header extends Component {
@@ -8,10 +8,14 @@ class Header extends Component {
         return (
             <header>
                 <nav>
-                    <img src={logo} alt="Facebook Logo"></img>
+                    <div>
+                        <img src={logo} alt="Tecnodata Logo"></img>
+                        <p>TECNODATA</p>
+                        <p className="sub-name"> CONTABILIDADE</p>
+                    </div>                  
                     <div>
                         <p>Usuario</p>
-                        <i class="fas fa-user-circle"></i>
+                        <i className="fas fa-user-circle"></i>
                     </div>
                 </nav>
             </header>
