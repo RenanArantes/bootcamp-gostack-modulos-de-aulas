@@ -1,38 +1,33 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
-export const Container = styled.div`
-    max-width: 700px;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin: 80px auto;
-
-    h1 {
-        font-size: 20px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    svg {
-        margin-right: 10px;
-    }
-`;
-
-export const Form = styled.form`
+export const Form = styled.form.attrs(props => ({
+    finded: props.finded,
+}))`
     margin-top: 30px;
     display: flex;
     flex-direction: row;
 
     input {
         flex: 1;
-        border: 1px solid #f88;
+        border: 1px solid ${props => (props.finded ? '#ff6b6b' : '#eee')};
         padding: 10px 15px;
         border-radius: 4px;
-        font-size: 16px; 
+        font-size: 16px;
+
+        transition: border 0.25s ease-out;
     }
 `;
+
+const rotate = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+`;
+
 
 export const SubmitButton = styled.button.attrs(props => ({
     type: 'submit',
@@ -47,9 +42,49 @@ export const SubmitButton = styled.button.attrs(props => ({
     display: flex;
     justify-content: center;
     align-items: center;
-
+    /*
+    * Desativa o click do cursor enquanto o loading for true.
+    */
     &[disabled] {
         cursor: not-allowed;
         opacity: 0.6;
+    }
+
+    /*
+    * Adicionando um conjunto de elementos baseado em uma propriedade.
+    * faz o icone girar enquanto o loading for true.
+    */
+    ${props => props.loading && css`
+        svg {
+            animation: ${rotate} 2s linear infinite;
+        }
+    `}
+`;
+
+
+export const List = styled.ul`
+    list-style: none;
+    margin-top: 30px;
+
+    li {
+        padding: 15px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+
+        /*
+        * Aplica uma estilização no li menos no primeiro
+        */
+        & + li {
+            border-top: 1px solid #eee;
+        }
+
+        a {
+            color:#f01;
+            text-decoration: none;
+
+        }
     }
 `;
