@@ -1,14 +1,93 @@
-import React from 'react';
-import { View, Alert } from 'react-native';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { ActivityIndicator } from 'react-native';
+import api from '../../services/api';
 
-// import { Container } from './styles';
+import {
+    Container,
+    Header,
+    Avatar,
+    Name,
+    Bio,
+    Stars,
+    Starred,
+    OwnerAvatar,
+    Info,
+    Title,
+    Author,
+} from './styles';
 
-export default function User({ navigation }) {
-    Alert.alert(`${navigation.getParam('user')}`);
+export default class User extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: navigation.getParam('user').name,
+    });
 
-    return <View />;
+    static propTypes = {
+        navigation: PropTypes.shape({
+            getParam: PropTypes.func,
+        }).isRequired,
+    };
+
+    state = {
+        stars: [],
+        loading: false,
+    };
+
+    async componentDidMount() {
+        const { navigation } = this.props;
+        const user = navigation.getParam('user');
+
+        this.setState({ loading: true });
+
+        const response = await api.get(`/users/${user.login}/starred`);
+
+        this.setState({ stars: response.data, loading: false });
+    }
+
+    async loadMore() {
+        const { navigation } = this.props;
+        const user = navigation.getParam('user');
+
+        const response = await api.get(`/users/${user.login}/starred?page=2`);
+
+        this.setState({ stars: response.data });
+    }
+
+    render() {
+        const { navigation } = this.props;
+        const { stars, loading } = this.state;
+
+        const user = navigation.getParam('user');
+
+        return (
+            <Container>
+                <Header>
+                    <Avatar source={{ uri: user.avatar }} />
+                    <Name>{user.name}</Name>
+                    <Bio>{user.bio ? user.bio : 'Vazio'}</Bio>
+                </Header>
+                {loading ? (
+                    <ActivityIndicator color="#f10" size={50} />
+                ) : (
+                    <Stars
+                        onReachedThreshold={0.2}
+                        onEndReached={this.loadMore}
+                        data={stars}
+                        keyExtractor={star => String(star.id)}
+                        renderItem={({ item }) => (
+                            <Starred>
+                                <OwnerAvatar
+                                    source={{ uri: item.owner.avatar_url }}
+                                />
+                                <Info>
+                                    <Title>{item.name}</Title>
+                                    <Author>{item.owner.login}</Author>
+                                </Info>
+                            </Starred>
+                        )}
+                    />
+                )}
+            </Container>
+        );
+    }
 }
-
-User.navigationOptions = {
-    title: 'Usuários',
-};

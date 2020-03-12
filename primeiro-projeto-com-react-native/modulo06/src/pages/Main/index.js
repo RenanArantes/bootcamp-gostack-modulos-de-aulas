@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Keyboard, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -19,6 +20,16 @@ import {
 } from './styles';
 
 export default class Main extends Component {
+    static navigationOptions = {
+        title: 'Tecnodata Análise',
+    };
+
+    static propTypes = {
+        navigation: PropTypes.shape({
+            navigate: PropTypes.func,
+        }),
+    };
+
     state = {
         newUser: '',
         users: [],
@@ -107,7 +118,9 @@ export default class Main extends Component {
                             <Name>{item.name}</Name>
                             <Bio>{item.bio}</Bio>
 
-                            <ProfileButton onPress={this.handdleNavigation}>
+                            <ProfileButton
+                                onPress={() => this.handdleNavigation(item)}
+                            >
                                 <ProfileButtonText>
                                     Ver perfil
                                 </ProfileButtonText>
@@ -119,7 +132,3 @@ export default class Main extends Component {
         );
     }
 }
-
-Main.navigationOptions = {
-    title: 'Tecnodata Análise',
-};
