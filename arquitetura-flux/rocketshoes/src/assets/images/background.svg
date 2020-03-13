@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="master-artboard" viewBox="0 0 1395.5196533203125 448" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" style="enable-background:new 0 0 1400 980;" width="1395.5196533203125px" height="448px"><defs><radialGradient id="gradient-0" gradientUnits="objectBoundingBox" cx="-0.3382124602794647" cy="-0.43600931763648987" r="0.5" gradientTransform="matrix(1.7988532944025595, -0.23348522650790215, 0.010310820425584358, 1.4590766643630828, 0.64377678940204, 0.5728591015323989)">
+                <stop offset="0" style="stop-color: #666010"/>
+                <stop offset="1" style="stop-color: #0e0d02"/>
+              </radialGradient></defs><rect id="ee-background" x="0" y="0" width="1395.5196533203125" height="448" style="fill: white; fill-opacity: 0; pointer-events: none;"/><g transform="matrix(0.7295466661453246, 0, 0, 0.7295466661453246, -1.493420140715216, -0.47556906105486974)"><title>Path 2</title><desc>Created with Sketch.</desc><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Cart" transform="translate(-1.000000, 0.000000)" fill="#141419">
+            <path d="M 1 448 L 1921 171.4722900390625 L 1921 0 L 1 0 Z" id="Path-2" style="fill: url('#gradient-0');"/>
+        </g>
+    </g></g></svg>
