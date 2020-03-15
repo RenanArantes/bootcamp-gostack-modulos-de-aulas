@@ -75,7 +75,7 @@ export default class Main extends Component {
         Keyboard.dismiss();
     };
 
-    handdleNavigation = user => {
+    handleNavigation = user => {
         const { navigation } = this.props;
 
         navigation.navigate('User', { user });
@@ -119,7 +119,7 @@ export default class Main extends Component {
                             <Bio>{item.bio}</Bio>
 
                             <ProfileButton
-                                onPress={() => this.handdleNavigation(item)}
+                                onPress={() => this.handleNavigation(item)}
                             >
                                 <ProfileButtonText>
                                     Ver perfil
