@@ -1,146 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
+import api from '../../services/api';
 
 import { ProductList } from './styles';
 
-export default function Home() {
-    return (
-        <ProductList>
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
+export default class Home extends Component {
+    state = {
+        products: [],
+    };
 
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
+    async componentDidMount() {
+        const response = await api.get('products');
 
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
+        this.setState({ products: response.data });
+    }
 
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
+    render() {
+        const { products } = this.state;
 
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
+        return (
+            <ProductList>
+                {products.map(product => (
+                    <li key={product.id}>
+                        <img src={product.image} alt={product.title} />
+                        <strong>{product.title}</strong>
+                        <span>{product.price}</span>
 
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
+                        <button type="button">
+                            <div>
+                                <MdAddShoppingCart size={16} color="#FFF" /> 3
+                            </div>
 
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
-
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
-
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
-
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
-
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
-
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
-
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
-
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
-
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
-
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
-
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-flyby-mid-masculino/26/HZM-3021-026/HZM-3021-026_zoom1.jpg"
-                    alt="Tênis"
-                />
-                <strong>Tenis caro</strong>
-                <span>R$ 239,99</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF" /> 3
-                    </div>
-
-                    <span>Adicionar ao carrinho</span>
-                </button>
-            </li>
-        </ProductList>
-    );
+                            <span>Adicionar ao carrinho</span>
+                        </button>
+                    </li>
+                ))}
+            </ProductList>
+        );
+    }
 }
